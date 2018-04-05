@@ -10,14 +10,28 @@ temp_hash= { data: { rooms:
   }
 }
 
+room_array=temp_hash[:data][:rooms]
 
-# [:data][:rooms]
-# loop in array --- if [:room_number]=201 return :capacity
-
-temp_array=temp_hash[:data][:rooms]
-
-temp_array.each do |value|
-  if value[:room_number] == "201"
-    return p value[:capacity]
+def capacity(room_array)
+  room_array.each do |value|
+    if value[:room_number] == "201"
+      return value[:capacity]
+    end
   end
 end
+
+ p capacity(room_array)
+
+events_array=temp_hash[:data][:events]
+
+def events(room_array, events_array)
+  events_array.each do |value|
+    if value[:room_id] == 1 && value[:attendees] <= capacity(room_array)
+      return "ok"
+    else
+      p "get outta here"
+    end
+  end
+end
+
+p events(room_array, events_array)
